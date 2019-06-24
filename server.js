@@ -4,11 +4,15 @@ const connectDB = require("./config/db");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+//NOTE connection to DB
 connectDB();
 
 app.get("/", (req, res) => {
     res.send("hello from express");
 });
+
+// NOTE parsing middleware
+app.use(express.json({ extended: false }));
 
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
